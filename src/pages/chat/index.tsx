@@ -1,20 +1,19 @@
-import { redirect } from "src/router/routes";
-import { AuthService } from "src/api/services/auth.service";
-
-const authService = new AuthService();
+import { Outlet } from "react-router-dom";
+import Header from "src/components/header";
+import authMiddleware from "src/middleware/auth.middleware";
 
 export const Name = "chat";
 
-export const Loader = async () => {
-  const isLoggedIn = await authService.isLoggedIn();
-
-  if (!isLoggedIn) {
-    return redirect({ name: "login" });
-  }
-
-  return null;
-};
+export const Loader = authMiddleware;
 
 export const Page = () => {
-  return <div>Chat</div>;
+  return (
+    <>
+      <Header />
+
+      <main>
+        <Outlet />
+      </main>
+    </>
+  );
 };
