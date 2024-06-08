@@ -2,16 +2,22 @@ import { AuthService } from "src/api/services/auth.service";
 import { useFormControl } from "src/hooks/useFormControl";
 import { FormField } from "src/components/FormField";
 import { SignupModel } from "src/api/models/signup.model";
+import { Link } from "react-router-dom";
+import { resolveRoute, useNavigate } from "src/router/routes";
 
 const authService = new AuthService();
 
 export const Name = "signup";
 
 export const Page = () => {
+  const navigate = useNavigate();
+
   const { messages, handleSubmit, cleanErrors } = useFormControl(
     SignupModel,
-    async (payload) => {
-      await authService.signUp(payload.email, payload.password);
+    (payload) => {
+      authService
+        .signUp(payload.email, payload.password)
+        .then(() => navigate({ name: "chat" }));
     }
   );
 
@@ -47,6 +53,12 @@ export const Page = () => {
         </div>
 
         {messages.general && <p>{messages.general}</p>}
+
+        <div>
+          <span>Already have an account?</span>
+
+          <Link to={resolveRoute({ name: "login" })}>Login</Link>
+        </div>
 
         <button type="submit" className="submit-button">
           Signup

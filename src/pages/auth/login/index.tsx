@@ -2,25 +2,24 @@ import { AuthService } from "src/api/services/auth.service";
 import { LoginModel } from "src/api/models/login.model";
 import { useFormControl } from "src/hooks/useFormControl";
 import { FormField } from "src/components/FormField";
-import { useNavigate } from "src/router/routes";
+import { resolveRoute, useNavigate } from "src/router/routes";
+import { Link } from "react-router-dom";
 
 const authService = new AuthService();
 
 export const Name = "login";
 
 export const Page = () => {
-  const { messages, handleSubmit, cleanErrors } = useFormControl(
-    LoginModel,
-    async (payload) => {
-      await authService.logIn(payload.email, payload.password);
-    }
-  );
-
   const navigate = useNavigate();
 
-  const handleForgotPassword = () => {
-    navigate({ name: "forgot" });
-  };
+  const { messages, handleSubmit, cleanErrors } = useFormControl(
+    LoginModel,
+    (payload) => {
+      authService
+        .logIn(payload.email, payload.password)
+        .then(() => navigate({ name: "chat" }));
+    }
+  );
 
   return (
     <div>
@@ -44,12 +43,16 @@ export const Page = () => {
             message={messages.password?.join(", ")}
           />
 
-          <button type="button" onClick={handleForgotPassword}>
-            Forgot password?
-          </button>
+          <Link to={resolveRoute({ name: "forgot" })}>Forgot password?</Link>
         </div>
 
         {messages.general && <p>{messages.general}</p>}
+
+        <div>
+          <span>Don't have an account?</span>
+
+          <Link to={resolveRoute({ name: "signup" })}>Signup</Link>
+        </div>
 
         <button type="submit" className="submit-button">
           Login
