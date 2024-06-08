@@ -72,8 +72,8 @@ export const useRouteName = () => {
 };
 
 export const redirect = (route: RouteOptions) => {
-  console.log("redirect to: " + route.name);
-  console.log(resolveRoute(route));
-  console.log(_redirect(resolveRoute(route)));
-  return _redirect(resolveRoute(route));
+  const routeURL = resolveRoute(route);
+
+  window.history.pushState(routeURL, route.name, routeURL);
+  return _redirect(routeURL);
 };
