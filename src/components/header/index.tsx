@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import styles from "./styles.module.css";
 import { resolveRoute, useNavigate } from "src/router/routes";
 import { AuthService } from "src/api/services/auth.service";
 
@@ -21,9 +20,9 @@ const Header = () => {
   };
 
   return (
-    <header className={styles.header}>
+    <header>
       <nav>
-        <ul className={styles.navList}>
+        <ul>
           {links.map((item, index) => {
             return (
               <li key={`nav-link-${index}`}>
