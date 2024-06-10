@@ -1,6 +1,6 @@
 import { AuthService } from "src/api/services/auth.service";
 import { useFormControl } from "src/hooks/useFormControl";
-import { FormField } from "src/components/FormField";
+import { FormField } from "src/components/form-field";
 import { SignupModel } from "src/api/models/signup.model";
 import { Link } from "react-router-dom";
 import { resolveRoute, useNavigate } from "src/router/routes";

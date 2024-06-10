@@ -1,6 +1,6 @@
 import { ForgotModel } from "src/api/models/forgot.model";
 import { AuthService } from "src/api/services/auth.service";
-import { FormField } from "src/components/FormField";
+import { FormField } from "src/components/form-field";
 import { useFormControl } from "src/hooks/useFormControl";
 import { useNavigate } from "src/router/routes";
 

@@ -1,7 +1,7 @@
 import { AuthService } from "src/api/services/auth.service";
 import { LoginModel } from "src/api/models/login.model";
 import { useFormControl } from "src/hooks/useFormControl";
-import { FormField } from "src/components/FormField";
+import { FormField } from "src/components/form-field";
 import { resolveRoute, useNavigate } from "src/router/routes";
 import { Link } from "react-router-dom";
 
@@ -22,11 +22,15 @@ export const Page = () => {
   );
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div className="container py-8">
+      <h1 className="text-2xl text-center mb-8">Login</h1>
 
-      <form onSubmit={handleSubmit} onInput={cleanErrors}>
-        <div>
+      <form
+        onSubmit={handleSubmit}
+        onInput={cleanErrors}
+        className="mx-auto max-w-sm"
+      >
+        <div className="flex flex-col gap-y-4">
           <FormField
             type="email"
             placeholder="Email"
