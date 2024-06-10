@@ -5,10 +5,8 @@ export const Loader = authMiddleware;
 
 export const Page = () => {
   return (
-    <div>
-      <span>auth layout</span>
-
+    <main>
       <Outlet />
-    </div>
+    </main>
   );
 };
