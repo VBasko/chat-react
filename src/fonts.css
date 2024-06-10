@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/helvetica.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Helvetica Fallback";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Arial");
+  ascent-override: 77%;
+  descent-override: 23%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
+}
+
+@font-face {
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/helvetica-bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Helvetica Fallback";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Arial Bold");
+  ascent-override: 77%;
+  descent-override: 23%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
+}
