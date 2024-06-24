@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom";
 import Header from "src/components/header";
 import authMiddleware from "src/middleware/auth.middleware";
 
@@ -11,9 +10,7 @@ export const Page = () => {
     <>
       <Header />
 
-      <main>
-        <Outlet />
-      </main>
+      <main>chat</main>
     </>
   );
 };
