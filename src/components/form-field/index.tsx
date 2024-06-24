@@ -23,7 +23,9 @@ export const FormField = (props: FormFieldProps) => {
       focus:invalid:border-red-light focus:invalid:ring-red-light"
         />
       </div>
-      {props.error && <span className="text-sm text-red">{props.message}</span>}
+      {props.error && (
+        <span className="text-sm text-red-light">{props.message}</span>
+      )}
     </>
   );
 };
