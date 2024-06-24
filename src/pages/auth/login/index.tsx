@@ -4,6 +4,7 @@ import { useFormControl } from "src/hooks/useFormControl";
 import { FormField } from "src/components/form-field";
 import { resolveRoute, useNavigate } from "src/router/routes";
 import { Link } from "react-router-dom";
+import Button from "src/components/button";
 
 const authService = new AuthService();
 
@@ -58,9 +59,7 @@ export const Page = () => {
           <Link to={resolveRoute({ name: "signup" })}>Signup</Link>
         </div>
 
-        <button type="submit" className="submit-button">
-          Login
-        </button>
+        <Button type="submit">Login</Button>
       </form>
     </div>
   );
