@@ -1,9 +1,9 @@
 import { IsEmail, IsNotEmpty } from "class-validator";
 
 export class LoginModel {
-  @IsEmail()
+  @IsEmail({}, { message: "Please enter valid email address." })
   email: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: "Password should not be empty." })
   password: string;
 }
