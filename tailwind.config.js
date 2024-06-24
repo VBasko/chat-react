@@ -17,6 +17,10 @@ module.exports = {
           light: "#FF5449",
           dark: "#BA1A1A",
         },
+
+        primary: "#C2CF3E",
+        "on-primary": "#2F3300",
+        "primary-container": "#454B00",
       },
       container: {
         center: true,
