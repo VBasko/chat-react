@@ -6,7 +6,9 @@ export const Loader = authMiddleware;
 export const Page = () => {
   return (
     <main>
-      <Outlet />
+      <div className="container py-8">
+        <Outlet />
+      </div>
     </main>
   );
 };
