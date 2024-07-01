@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "src/router/routes";
 import { ForgotModel } from "src/api/models/forgot.model";
 import { AuthService } from "src/api/services/auth.service";
-import Button from "src/components/button";
-import { FormField } from "src/components/form-field";
 import { useFormControl } from "src/hooks/useFormControl";
-import { resolveRoute, useNavigate } from "src/router/routes";
+
+import Button from "src/components/button";
+import FormField from "src/components/form-field";
+import Link from "src/components/link";
 
 export const Name = "forgot";
 
@@ -23,13 +24,13 @@ export const Page = () => {
   );
 
   return (
-    <div className="container py-8">
+    <div>
       <h1 className="text-2xl text-center mb-8">Forgot password</h1>
 
       <form
         onSubmit={handleSubmit}
         onInput={cleanErrors}
-        className="mx-auto max-w-sm"
+        className="mx-auto max-w-sm flex flex-col gap-y-6"
       >
         <div className="flex flex-col gap-y-4">
           <FormField
@@ -41,11 +42,11 @@ export const Page = () => {
           />
         </div>
 
-        <Link to={resolveRoute({ name: "login" })}>
-          Already have an account? Login
-        </Link>
+        <Link routeName="login">Already have an account? Login</Link>
 
-        <Button type="submit">Send email</Button>
+        <Button type="submit" className="self-start">
+          Send email
+        </Button>
       </form>
     </div>
   );
