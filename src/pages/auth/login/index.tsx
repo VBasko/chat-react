@@ -1,10 +1,11 @@
+import { useNavigate } from "src/router/routes";
 import { AuthService } from "src/api/services/auth.service";
 import { LoginModel } from "src/api/models/login.model";
 import { useFormControl } from "src/hooks/useFormControl";
-import { FormField } from "src/components/form-field";
-import { resolveRoute, useNavigate } from "src/router/routes";
-import { Link } from "react-router-dom";
+
 import Button from "src/components/button";
+import FormField from "src/components/form-field";
+import Link from "src/components/link";
 
 const authService = new AuthService();
 
@@ -23,13 +24,13 @@ export const Page = () => {
   );
 
   return (
-    <div className="container py-8">
+    <div>
       <h1 className="text-2xl text-center mb-8">Login</h1>
 
       <form
         onSubmit={handleSubmit}
         onInput={cleanErrors}
-        className="mx-auto max-w-sm"
+        className="mx-auto max-w-sm flex flex-col gap-y-6"
       >
         <div className="flex flex-col gap-y-4">
           <FormField
@@ -47,19 +48,18 @@ export const Page = () => {
             error={!!messages.password}
             message={messages.password?.join(", ")}
           />
-
-          <Link to={resolveRoute({ name: "forgot" })}>Forgot password?</Link>
         </div>
 
         {messages.general && <p>{messages.general}</p>}
 
-        <div>
-          <span>Don't have an account?</span>
-
-          <Link to={resolveRoute({ name: "signup" })}>Signup</Link>
+        <div className="flex gap-2 justify-between flex-wrap">
+          <Link routeName="forgot">Forgot password?</Link>
+          <Link routeName="signup">Don't have an account? Signup</Link>
         </div>
 
-        <Button type="submit">Login</Button>
+        <Button type="submit" className="self-start">
+          Login
+        </Button>
       </form>
     </div>
   );
