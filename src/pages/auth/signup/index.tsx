@@ -1,10 +1,10 @@
+import { useNavigate } from "src/router/routes";
 import { AuthService } from "src/api/services/auth.service";
-import { useFormControl } from "src/hooks/useFormControl";
-import { FormField } from "src/components/form-field";
 import { SignupModel } from "src/api/models/signup.model";
-import { Link } from "react-router-dom";
-import { resolveRoute, useNavigate } from "src/router/routes";
+import { useFormControl } from "src/hooks/useFormControl";
 import Button from "src/components/button";
+import FormField from "src/components/form-field";
+import Link from "src/components/link";
 
 const authService = new AuthService();
 
@@ -23,13 +23,13 @@ export const Page = () => {
   );
 
   return (
-    <div className="container py-8">
+    <div>
       <h1 className="text-2xl text-center mb-8">Signup</h1>
 
       <form
         onSubmit={handleSubmit}
         onInput={cleanErrors}
-        className="mx-auto max-w-sm"
+        className="mx-auto max-w-sm flex flex-col gap-y-6"
       >
         <div className="flex flex-col gap-y-4">
           <FormField
@@ -59,11 +59,11 @@ export const Page = () => {
 
         {messages.general && <p>{messages.general}</p>}
 
-        <Link to={resolveRoute({ name: "login" })}>
-          Already have an account? Login
-        </Link>
+        <Link routeName="login">Already have an account? Login</Link>
 
-        <Button type="submit">Signup</Button>
+        <Button type="submit" className="self-start">
+          Signup
+        </Button>
       </form>
     </div>
   );
