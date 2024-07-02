@@ -8,6 +8,8 @@ import {
 } from "firebase/auth";
 import { FirebaseService } from ".";
 import { HandleErrors } from "../decorators";
+import store from "src/redux/store";
+import { clearUser, setUser } from "src/redux/features/userSlice";
 
 const firebaseService = new FirebaseService();
 
@@ -24,12 +26,15 @@ export class AuthService {
 
     this.auth = getAuth(firebaseService.app);
 
-    AuthService.instance = this;
-  }
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        store.dispatch(setUser(user));
+      } else {
+        store.dispatch(clearUser());
+      }
+    });
 
-  async isLoggedIn() {
-    await this.auth.authStateReady();
-    return !!this.auth.currentUser;
+    AuthService.instance = this;
   }
 
   signUp(email: string, password: string) {
@@ -37,7 +42,6 @@ export class AuthService {
   }
 
   logIn(email: string, password: string) {
-    console.log(email, password);
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
