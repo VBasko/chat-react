@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { resolveRoute, useNavigate } from "src/router/routes";
 import { AuthService } from "src/api/services/auth.service";
 import Button from "../button";
+import { useTypedSelector } from "src/hooks/useTypedSelector";
 
 const authService = new AuthService();
 
@@ -13,6 +14,8 @@ const links = [
 ];
 
 const Header = () => {
+  const user = useTypedSelector((state) => state.user.value);
+
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -35,9 +38,13 @@ const Header = () => {
       </nav>
 
       <div className="flex gap-4">
-        <span>User: {authService.auth.currentUser?.displayName}</span>
+        {user ? (
+          <>
+            <span>User: {user.email}</span>
 
-        <Button onClick={handleLogout}>Logout</Button>
+            <Button onClick={handleLogout}>Logout</Button>
+          </>
+        ) : null}
       </div>
     </header>
   );
