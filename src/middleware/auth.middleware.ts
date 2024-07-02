@@ -1,12 +1,13 @@
-import { AuthService } from "src/api/services/auth.service";
+import store from "src/redux/store";
 import { redirect, useRouteName as getRouteName } from "src/router/routes";
-
-const authService = new AuthService();
 
 const UNPROTECTED_ROUTES: string[] = ["login", "signup", "forgot"];
 
+// TODO: make it working
 export default async function authMiddleware() {
-  const isLoggedIn = await authService.isLoggedIn();
+  const state = store.getState();
+  const isLoggedIn = state.user.isLoggedIn;
+
   const currentRoute = getRouteName();
 
   if (!isLoggedIn) {
